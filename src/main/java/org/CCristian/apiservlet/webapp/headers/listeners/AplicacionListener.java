@@ -40,7 +40,7 @@ public class AplicacionListener implements ServletContextListener,
     }
 
 
-    /*ServletRequestListener*/
+    /*HttpSessionListener*/
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         servletContext.log("Creando la Sesion Http!");

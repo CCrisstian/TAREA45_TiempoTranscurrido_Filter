@@ -10,7 +10,6 @@ import org.CCristian.apiservlet.webapp.headers.services.LoginService;
 import org.CCristian.apiservlet.webapp.headers.services.LoginServiceSessionImpl;
 import org.CCristian.apiservlet.webapp.headers.services.ProductoService;
 import org.CCristian.apiservlet.webapp.headers.services.ProductoServiceImpl;
-import org.CCristian.apiservlet.webapp.headers.services.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +24,7 @@ public class ProductoServlet extends HttpServlet {
         List<Producto> productos = service.listar();    /*Obtiene una lista con los Productos*/
 
         LoginService auth = new LoginServiceSessionImpl();
-        Optional<String> usernameOptional = auth.getUsername(req);  /*Obtiene en nombre de Usuario*/
+        Optional<String> usernameOptional = auth.getUsername(req);  /*Obtiene el nombre de Usuario*/
 
         String mensajeRequest = (String) req.getAttribute("mensaje");
         String mensajeApp = (String) getServletContext().getAttribute("mensaje");
@@ -41,15 +40,15 @@ public class ProductoServlet extends HttpServlet {
             out.println("    </head>");
             out.println("    <body>");
             out.println("        <h1>Listado de Productos!</h1>");
-            if(usernameOptional.isPresent()) {
+            if (usernameOptional.isPresent()) {
                 out.println("<div style='color: blue;'>Hola " + usernameOptional.get() + " Bienvenido!</div>");
             }
-                out.println("<table>");
+            out.println("<table>");
             out.println("<tr>");
             out.println("<th>id</th>");
             out.println("<th>nombre</th>");
             out.println("<th>tipo</th>");
-            if(usernameOptional.isPresent()) {
+            if (usernameOptional.isPresent()) {
                 out.println("<th>precio</th>");
                 out.println("<th>agregar</th>");
             }
@@ -59,7 +58,7 @@ public class ProductoServlet extends HttpServlet {
                 out.println("<td>" + p.getId() + "</td>");
                 out.println("<td>" + p.getNombre() + "</td>");
                 out.println("<td>" + p.getTipo() + "</td>");
-                if(usernameOptional.isPresent()) {
+                if (usernameOptional.isPresent()) {
                     out.println("<td>" + p.getPrecio() + "</td>");
                     out.println("<td><a href=\""
                             + req.getContextPath()
@@ -69,8 +68,8 @@ public class ProductoServlet extends HttpServlet {
                 out.println("</tr>");
             });
             out.println("</table>");
-            out.println("<p>"+mensajeApp+"</p>");
-            out.println("<p>"+mensajeRequest+"</p>");
+            out.println("<p>" + mensajeApp + "</p>");
+            out.println("<p>" + mensajeRequest + "</p>");
             out.println("    </body>");
             out.println("</html>");
         }
